@@ -1,24 +1,22 @@
 # Grace Yu
 
-Projects I have built or contributed to.
+Things I've built or worked on.
 
 ## [Food is Medicine Benchmark](https://github.com/gracemyu/OpenFIM-Bench/tree/add-nhanes-merge-pipeline)
 
-OpenFIM-Bench is an open benchmark for testing whether AI-generated nutrition guidance is safe, evidence-based, and appropriate for Food is Medicine programs, grounded in real US population data.
+OpenFIM-Bench is an open benchmark for checking whether AI nutrition advice would hold up in a Food is Medicine program. The test cases are built from real US survey data and go through expert review.
 
-I built the NHANES merge pipeline: it joins 341 public NHANES tables into one row per participant per survey cycle (113,386 rows by 14,066 columns), resolves duplicate variables against CDC's own descriptions, cuts a diabetes and kidney disease slice, and compares three synthetic patient generators, including a tabular diffusion model I wrote, to see which is good enough to build benchmark cases from.
+I wrote the NHANES merge pipeline. It joins the 341 public NHANES tables into one row per participant per survey cycle, 113,386 rows by 14,066 columns, and asserts the row count against a spine after every join. Duplicate variables get resolved against CDC's own variable descriptions. From the merged data I cut a diabetes and kidney disease slice and trained three synthetic patient generators on it (CTGAN, GReaT, and a small tabular diffusion model I wrote) to find out whether synthetic patients are good enough to build benchmark cases from. The diffusion model came out closest to the real data.
 
 ## [Artemis](https://github.com/Abhi7419/artemisv2)
 
-Artemis discovers connections between people and organizations from public sources, builds an evidence-grounded relationship graph, and finds warm introduction paths through it. Every edge carries a source URL and evidence snippet.
+Artemis builds a relationship graph of people and organizations from public web sources and finds introduction paths through it. Nothing goes in the graph without a source URL and the sentence that supports it.
 
-I shipped 20 merged pull requests covering pathfinding cost shaping (hop surcharge, fame penalty, mega-hub degree), a homonym disambiguation guard, firm-roster and headless-browser fallback providers, per-hop evidence verification, a Claude entity filter at persist time, and Postgres concurrency and NUL-byte fixes. I also built the Claude and Ollama relationship-strength classifiers in the [demo app](https://github.com/Abhi7419/DrewGloverDemo).
+I have 20 merged PRs in the repo. The bigger ones: cost shaping for the pathfinder so it stops routing through celebrities and mega-hubs, a guard against merging two people who share a name, firm-roster and headless-browser scrapers as fallback providers, and a check that verifies the evidence on each hop of a path before returning it. I also fixed a batch of less visible things, like Postgres write concurrency, NUL bytes in scraped text breaking builds, and a Claude entity filter that only ran at ranking time and not when saving. In the [demo app](https://github.com/Abhi7419/DrewGloverDemo) I built the Claude and Ollama classifiers that score how strong a relationship is.
 
 ## [Elutive](https://elutive.com)
 
-Elutive is the AI layer for analytical chemistry: it helps LC-MS labs in drug development troubleshoot methods and review run data by identifying likely causes of problems and suggesting fixes.
-
-The code is private.
+Elutive is an AI layer for analytical chemistry. Labs that run LC-MS in drug development use it to troubleshoot methods and review run data. It points at the likely cause of a problem and suggests a fix. The code is private.
 
 ## AI gateway at Ellucian (internship)
 
